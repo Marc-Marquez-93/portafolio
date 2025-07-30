@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculadora</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div id="padre">
+        <div id="target">
+            <div>
+                <h1 class="e">calculadora</h1>
+                <div id="entradas">
+                    <div>
+                        <input id="entrada1" type="text">
+                    </div>
+                    <div>
+                        <input id="entrada2" type="text">
+                    </div>
+                </div>
+                <div>
+                    <button id="red">resolver</button>
+                </div>
+                <div class="opciones">
+                    <label>
+                        <input type="radio" value="suma" name="op">suma
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="resta" name="op">resta
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="multiplicacion" name="op">multiplicacion
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" value="division" name="op">división
+                    </label>
+                </div>
+                <div>
+                    <h1 id="res" class="e">respuesta</h1>
+                    <p id="respuesta">0</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function suma() {
+                let res = document.getElementById("respuesta");
+                let n1 = document.getElementById("entrada1");
+                let n2 = document.getElementById("entrada2")
+
+                res.textContent = parseInt(n1.value) + parseInt(n2.value)
+            }
+            function resta() {
+                let res = document.getElementById("respuesta");
+                let n1 = document.getElementById("entrada1");
+                let n2 = document.getElementById("entrada2")
+                res.textContent = parseInt(n1.value) - parseInt(n2.value)
+            }
+            function multiplicacion() {
+                let res = document.getElementById("respuesta");
+                let n1 = document.getElementById("entrada1");
+                let n2 = document.getElementById("entrada2")
+
+                res.textContent = parseInt(n1.value) * parseInt(n2.value)
+            }
+            function division() {
+                let res = document.getElementById("respuesta");
+                let n1 = document.getElementById("entrada1");
+                let n2 = document.getElementById("entrada2")
+                if (n2.value === "0") {
+                    res.textContent = "no se puede dividir por 0"
+                } else {
+                    res.textContent = parseInt(n1.value) / parseInt(n2.value)
+                }
+            }
+
+            function select() {
+                let operacion = document.querySelector('input[name="op"]:checked');
+                if (operacion) {
+                    if (operacion.value === "suma") {
+                        suma();
+                    } else if (operacion.value === "resta") {
+                        resta();
+                    } else if (operacion.value === "multiplicacion") {
+                        multiplicacion();
+                    } else if (operacion.value === "division") {
+                        division();
+                    }
+                } else {
+                    document.getElementById("respuesta").textContent = "Selecciona una operación";
+                }
+            }
+
+            document.getElementById("red").addEventListener("click", select);
+        </script>
+</body>
+
+</html>
