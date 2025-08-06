@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#cont {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 30px;
+    border-radius: 5px;
+    min-width: 800px;
+    width: 69vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.imagen {
+    width: 60%;
+    height: auto;
+    min-width: 220px;
+    border-radius: 3px;
+    border: 1px solid rgb(41, 40, 40);
+    align-self: center;
+    margin-bottom: 25px;
+}
+
+.descripcion {
+    font-size: 1.3em;
+    text-align: center;
+    margin: 25px 0;
+}
+
+.mapa {
+    width: 30vw;
+    height: 40vh;
+    min-width: 240px;
+    min-height: 300px;
+    border: 1px solid rgb(41, 40, 40);
+    align-self: center;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+.datos {
+    padding-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: center;
+}
+
+.h3t {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.datos li::marker {
+    content: "σ";
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #000000;
+}
+
+.li {
+    font-size: 1.3em;
+    margin-bottom: 25px;
+    padding-left: 25px;
+    text-align: center;
+}
+
+.categoria {
+    font-size: 1.3em;
+    margin: 25px 0;
+    align-self: center;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    #cont {
+        width: 100%;
+        min-width: 0;
+    }
+}
+@media (max-width: 350px) {
+    .titulo, .h3t {
+        font-size: 1.5em;
+    }
+    .li {
+        padding-left: 2px;
+    }
+    .categoria, .li, .descripcion {
+        font-size: 1em;
+    }
+}

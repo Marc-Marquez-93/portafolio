@@ -9,18 +9,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     gap: 50px;
+    padding: 30px 0;
+    box-sizing: border-box;
 }
 
 #imagen2,
 #imagen3,
-#imagen4 {
+#imagen4,
+#imagen5 {
     width: 15vw;
     height: auto;
     min-width: 120px;
     box-shadow: #FFD700 0px 0px 2px;
     border-radius: 3px;
+    align-self: center;
 }
 
 #imagen1 {
@@ -37,7 +41,7 @@
     margin: 10px;
     box-shadow: #FFD700 0px 0px 3px;
     display: grid;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
     gap: 20px;
     padding: 30px 10px;
@@ -67,6 +71,7 @@
     cursor: default;
     display: flex;
     justify-self: center;
+    text-align: center;
 }
 
 .link {
