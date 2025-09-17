@@ -9,7 +9,9 @@ $('#datepicker').datepicker({
 
 $('#timepicker').timepicker({
   uiLibrary: 'bootstrap5',
-  format: 'hh:MM TT'
+  format: 'HH:MM', 
+  minTime: '08:00',
+  maxTime: '20:00'
 });
 
 // Función para generar ID
@@ -79,6 +81,25 @@ document.getElementById('save2').addEventListener('click', () => {
     return;
   }
 
+ // Validación de rango de hora (08:00 - 20:00)
+if (horaStr) {
+  const match = horaStr.match(/^(\d{1,2}):(\d{2})$/);
+  if (match) {
+    const [, hora, minuto] = match;
+    const horaNum = parseInt(hora, 10);
+    const minNum = parseInt(minuto, 10);
+
+    if (horaNum < 8 || (horaNum === 20 && minNum > 0) || horaNum > 20) {
+      Swal.fire({
+        title: 'Hora inválida',
+        text: 'Solo se permiten reservas entre las 08:00 AM y las 08:00 PM',
+        icon: 'error'
+      });
+      return; // 🚨 Detiene el guardado
+    }
+  }
+}
+
   // Guardar reserva
   const reserva = { id, usuario, cantidad, fecha: fechaStr, hora: horaStr, ocasion, notas, estado };
   reservas.push(reserva);
@@ -99,6 +120,28 @@ document.getElementById('save2').addEventListener('click', () => {
   $('#timepicker').val('');
 });
 
+
+
+
+//boton de reinicio
+
+document.getElementById("clearReservas").addEventListener("click", () => {
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "Esto eliminará todas las reservas guardadas",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, borrar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.removeItem('reservas');
+      reservas = [];
+      Swal.fire('¡Borrado!', 'Se eliminaron todas las reservas.', 'success');
+      document.getElementById("reservas").innerHTML = ""; // limpiar vista
+    }
+  });
+});
 
 
   
