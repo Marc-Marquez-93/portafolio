@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="dad">
+    <div id="container">
+      <button type="button" class="btn btn-danger btn-lg" onclick="history.back()">Volver a gestion de mesas</button>
+      <h1 class="titulo">Reservaciones</h1>
+      <p class="parrafo">Bienvenido, aqui podra realizar sus Reservaciones:</p>
+      <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar
+        reservación</button>
+      <div id="raya"></div>
+      <div id="reservas"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Reserva</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="reservaForm">
+
+          <input type="text" id="id" class="cuadro" placeholder="id de reserva" readonly>
+
+          <input type="text" id="usuario" class="cuadro" placeholder="Ingrese su nombre :)" required>
+
+          <input type="number" id="cantidad" class="cuadro" placeholder="Numero de personas" required min="2" max="20">
+
+          <input id="datepicker" width="276" class="form-control" placeholder="Selecciona la fecha" />
+          <script>
+            $('#datepicker').datepicker();
+          </script>
+
+          <input id="timepicker" width="276" class="form-control mb-3" placeholder="Selecciona la hora" />
+          <script>
+            $('#timepicker').timepicker();
+          </script>
+
+          <select id="ocasion" class="cuadro form-select" required>
+            <option value="" selected disabled>Ocasion especial</option>
+            <option value="1">Ninguna</option>
+            <option value="2">Cumpleaños</option>
+            <option value="3">Aniversario</option>
+            <option value="4">Reunión de negocios</option>
+            <option value="5">Matrimonio</option>
+            <option value="6">Bautismo</option>
+            <option value="7">Primera comunión</option>
+            <option value="8">Graduación</option>
+            <option value="9">Confirmación</option>        
+          </select>
+
+          <input type="text" id="notas" class="cuadro" placeholder="notas adicionales" required>
+
+          <select id="estado" class="cuadro form-select" required>
+            <option value="" selected disabled>estado</option>
+            <option value="1">Pendiente</option>
+            <option value="2">Confirmada</option>
+            <option value="3">Cancelada</option>
+            <option value="4">Finalizada</option>
+            <option value="5">No Show</option>       
+          </select>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Cerrar</button>
+          <button id="save2" type="button" class="btn btn-success btn-lg">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="./reserva.js"></script>
+</body>
+
+</html>
