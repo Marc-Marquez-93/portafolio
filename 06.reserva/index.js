@@ -326,30 +326,30 @@ recargarMesas();
 const cont = document.getElementById("mesas");
 if (cont) mesas.forEach(mesa => pintarMesa(mesa));
 
-// 🧹 Reiniciar todas las mesas (eliminar todo)
-function reiniciarMesas() {
-  Swal.fire({
-    title: "¿Reiniciar mesas?",
-    text: "Se eliminarán todas las mesas y bloqueos. Esta acción no se puede deshacer.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Sí, reiniciar",
-    cancelButtonText: "Cancelar"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      mesas = [];
-      localStorage.removeItem("mesas");
-      const cont = document.getElementById("mesas");
-      if (cont) cont.innerHTML = "";
-      Swal.fire({
-        title: "Listo",
-        text: "Se han eliminado todas las mesas.",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false
-      });
-    }
-  });
-}
+// // 🧹 Reiniciar todas las mesas (eliminar todo)
+// function reiniciarMesas() {
+//   Swal.fire({
+//     title: "¿Reiniciar mesas?",
+//     text: "Se eliminarán todas las mesas y bloqueos. Esta acción no se puede deshacer.",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#d33",
+//     cancelButtonColor: "#3085d6",
+//     confirmButtonText: "Sí, reiniciar",
+//     cancelButtonText: "Cancelar"
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       mesas = [];
+//       localStorage.removeItem("mesas");
+//       const cont = document.getElementById("mesas");
+//       if (cont) cont.innerHTML = "";
+//       Swal.fire({
+//         title: "Listo",
+//         text: "Se han eliminado todas las mesas.",
+//         icon: "success",
+//         timer: 1500,
+//         showConfirmButton: false
+//       });
+//     }
+//   });
+// }
