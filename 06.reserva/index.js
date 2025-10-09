@@ -109,6 +109,30 @@ function abrirEditarMesa(idMesa) {
   document.getElementById("capacidad").value = mesa.capacidad;
   document.getElementById("ubicacion").value = mesa.ubicacion;
   document.getElementById("estado").value = mesa.estado;
+  mesa.bloqueos = mesa.bloqueos || [];
+
+    // 🔸 Bloquear el cambio de estado si hay una reserva activa en este momento
+  const ahora = new Date().getTime();
+  const estadoSelect = document.getElementById("estado");
+  let reservaActiva = false;
+
+  if (Array.isArray(mesa.bloqueos)) {
+    for (const bloque of mesa.bloqueos) {
+      const inicio = new Date(bloque.inicio).getTime();
+      const fin = new Date(bloque.fin).getTime();
+      if (ahora >= inicio && ahora < fin) {
+        reservaActiva = true;
+        break;
+      }
+    }
+  }
+
+  if (reservaActiva) {
+    estadoSelect.value = "2"; // Ocupada
+    estadoSelect.disabled = true;
+  } else {
+    estadoSelect.disabled = false;
+  }
 
   const btnSave = document.getElementById("save");
   if (btnSave) btnSave.textContent = "Editar";
@@ -157,75 +181,76 @@ const btnSave = document.getElementById("save");
 
 if (btnSave) {
   btnSave.addEventListener("click", () => {
-  const capacidad = document.getElementById("capacidad").value.trim();
-  const ubicacion = document.getElementById("ubicacion").value.trim();
-  const estado = document.getElementById("estado").value;
+    const capacidad = document.getElementById("capacidad").value.trim();
+    const ubicacion = document.getElementById("ubicacion").value.trim();
+    const estado = document.getElementById("estado").value;
 
-  if (!capacidad || !ubicacion || !estado) {
-    Swal.fire({
-      title: "Faltan datos",
-      text: "Por favor completa todos los campos obligatorios",
-      icon: "warning"
-    });
-    return;
-  }
-
-  const capacidadNum = parseInt(capacidad);
-  if (isNaN(capacidadNum) || capacidadNum < 2 || capacidadNum > 20) {
-    Swal.fire({
-      title: "Datos inválidos",
-      text: "La capacidad debe estar entre 2 y 20 personas",
-      icon: "error"
-    });
-    return;
-  }
-
-  if (ubicacion.length < 2) {
-    Swal.fire({
-      title: "Ubicación inválida",
-      text: "La ubicación debe tener al menos 2 caracteres",
-      icon: "error"
-    });
-    return;
-  }
-
-  if (mesaEnEdicion) {
-    const mesa = mesas.find(m => m.id === mesaEnEdicion);
-    if (mesa) {
-      mesa.capacidad = capacidad;
-      mesa.ubicacion = ubicacion;
-      mesa.estado = estado;
-      actualizarLocalStorage();
-      document.getElementById("mesas").innerHTML = "";
-      mesas.forEach(m => pintarMesa(m));
-
-      mesaEnEdicion = null;
-      btnSave.textContent = "Guardar";
+    if (!capacidad || !ubicacion || !estado) {
+      Swal.fire({
+        title: "Faltan datos",
+        text: "Por favor completa todos los campos obligatorios",
+        icon: "warning"
+      });
+      return;
     }
-  } else {
-    const nuevaMesa = {
-      id: document.getElementById("id").value,
-      capacidad,
-      ubicacion,
-      estado
-    };
-    mesas.push(nuevaMesa);
-    actualizarLocalStorage();
-    pintarMesa(nuevaMesa);
-    console.log("Mesa guardada:", nuevaMesa);
-  }
 
-  Swal.fire({
-    title: "Mesa guardada",
-    text: "¡La mesa fue registrada exitosamente!",
-    icon: "success"
+    const capacidadNum = parseInt(capacidad);
+    if (isNaN(capacidadNum) || capacidadNum < 2 || capacidadNum > 20) {
+      Swal.fire({
+        title: "Datos inválidos",
+        text: "La capacidad debe estar entre 2 y 20 personas",
+        icon: "error"
+      });
+      return;
+    }
+
+    if (ubicacion.length < 2) {
+      Swal.fire({
+        title: "Ubicación inválida",
+        text: "La ubicación debe tener al menos 2 caracteres",
+        icon: "error"
+      });
+      return;
+    }
+
+    if (mesaEnEdicion) {
+      const mesa = mesas.find(m => m.id === mesaEnEdicion);
+      if (mesa) {
+        mesa.capacidad = capacidad;
+        mesa.ubicacion = ubicacion;
+        mesa.estado = estado;
+        actualizarLocalStorage();
+        document.getElementById("mesas").innerHTML = "";
+        mesas.forEach(m => pintarMesa(m));
+
+        mesaEnEdicion = null;
+        btnSave.textContent = "Guardar";
+      }
+    } else {
+      const nuevaMesa = {
+        id: document.getElementById("id").value,
+        capacidad,
+        ubicacion,
+        estado,
+        bloqueos: [] // ← nuevo campo
+      };
+      mesas.push(nuevaMesa);
+      actualizarLocalStorage();
+      pintarMesa(nuevaMesa);
+      console.log("Mesa guardada:", nuevaMesa);
+    }
+
+    Swal.fire({
+      title: "Mesa guardada",
+      text: "¡La mesa fue registrada exitosamente!",
+      icon: "success"
+    });
+
+    document.getElementById("capacidad").value = "";
+    document.getElementById("ubicacion").value = "";
+    document.getElementById("estado").selectedIndex = 0;
+    form.classList.remove('was-validated');
   });
-
-  document.getElementById("capacidad").value = "";
-  document.getElementById("ubicacion").value = "";
-  document.getElementById("estado").selectedIndex = 0;
-  form.classList.remove('was-validated');
-});
 }
 
 const modalAgregar = document.getElementById("exampleModal");
@@ -243,6 +268,88 @@ if (modalAgregar) {
   });
 }
 
+// 🕒 Actualizar reloj y recargar mesas cada minuto
+function actualizarReloj() {
+  const relojDiv = document.getElementById("reloj");
+  const ahora = new Date();
+  
+  const opciones = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+  };
+  
+  relojDiv.textContent = ahora.toLocaleString("es-CO", opciones);
+}
+
+// 🔁 Recargar las mesas en tiempo real
+function recargarMesas() {
+  const cont = document.getElementById("mesas");
+  if (!cont) return;
+  cont.innerHTML = "";
+
+  // Revisar estado de mesas según bloqueos y hora actual
+  const ahora = new Date().getTime();
+  mesas.forEach(mesa => {
+    let ocupada = false;
+    if (Array.isArray(mesa.bloqueos)) {
+      for (const bloque of mesa.bloqueos) {
+        const inicio = new Date(bloque.inicio).getTime();
+        const fin = new Date(bloque.fin).getTime();
+        if (ahora >= inicio && ahora < fin) {
+          ocupada = true;
+          break;
+        }
+      }
+    }
+    mesa.estado = ocupada ? "2" : "1"; // 2=ocupada, 1=disponible
+  });
+
+  localStorage.setItem("mesas", JSON.stringify(mesas));
+  mesas.forEach(m => pintarMesa(m));
+}
+
+// 🔂 Ejecutar reloj y refrescar cada minuto
+setInterval(() => {
+  actualizarReloj();
+  recargarMesas();
+}, 60000); // cada 60 segundos
+
+// Llamar al cargar la página
+actualizarReloj();
+recargarMesas();
+
 const cont = document.getElementById("mesas");
 if (cont) mesas.forEach(mesa => pintarMesa(mesa));
 
+// 🧹 Reiniciar todas las mesas (eliminar todo)
+function reiniciarMesas() {
+  Swal.fire({
+    title: "¿Reiniciar mesas?",
+    text: "Se eliminarán todas las mesas y bloqueos. Esta acción no se puede deshacer.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, reiniciar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      mesas = [];
+      localStorage.removeItem("mesas");
+      const cont = document.getElementById("mesas");
+      if (cont) cont.innerHTML = "";
+      Swal.fire({
+        title: "Listo",
+        text: "Se han eliminado todas las mesas.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
+  });
+}

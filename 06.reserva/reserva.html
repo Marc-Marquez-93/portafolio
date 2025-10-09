@@ -21,10 +21,27 @@
       <p class="parrafo">Bienvenido, aqui podra realizar sus Reservaciones:</p>
       <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar
         reservación</button>
-        <button type="button" class="btn btn-warning btn-lg" id="clearReservas">
-  Borrar todas las reservas
-</button>
-
+      <!-- <button type="button" class="btn btn-warning btn-lg" id="clearReservas">
+        Borrar todas las reservas
+      </button> -->
+      <div id="fecha">
+        <input id="datepicker2" width="276" class="form-control" placeholder="Selecciona la fecha" />
+        <script>
+          $('#datepicker2').datepicker();
+        </script>
+        <button type="button" class="btn btn-warning"" id="filtrar">filtrar</button>
+      </div>
+      <div class="mt-3">
+        <select id="filtroEstado" class="form-select w-auto d-inline">
+          <option value="">Todos los estados</option>
+          <option value="1">Pendiente</option>
+          <option value="2">Confirmada</option>
+          <option value="3">Cancelada</option>
+          <option value="4">Finalizada</option>
+          <option value="5">No show</option>
+        </select>
+        <span id="textoFiltro" class="ms-2 fw-bold"></span>
+      </div>
       <div id="raya"></div>
       <div id="reservas"></div>
     </div>
@@ -37,7 +54,7 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Reserva</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id="reservaForm">
+        <form class="modal-body" id="reservaForm">
 
           <input type="text" id="id" class="cuadro" placeholder="id de reserva" readonly>
 
@@ -65,7 +82,7 @@
             <option value="6">Bautismo</option>
             <option value="7">Primera comunión</option>
             <option value="8">Graduación</option>
-            <option value="9">Confirmación</option>        
+            <option value="9">Confirmación</option>
           </select>
 
           <input type="text" id="notas" class="cuadro" placeholder="notas adicionales" required>
@@ -76,10 +93,14 @@
             <option value="2">Confirmada</option>
             <option value="3">Cancelada</option>
             <option value="4">Finalizada</option>
-            <option value="5">No Show</option>       
+            <option value="5">No Show</option>
           </select>
 
-        </div>
+          <select id="mesaDisponible" class="cuadro form-select" required>
+            <option value="" selected disabled>Selecciona una mesa disponible</option>
+          </select>
+
+        </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Cerrar</button>
           <button id="save2" type="button" class="btn btn-success btn-lg">Guardar</button>
@@ -95,6 +116,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script src="./reserva.js"></script>
+
 </body>
 
 </html>
