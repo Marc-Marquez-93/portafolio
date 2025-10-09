@@ -324,7 +324,10 @@ actualizarReloj();
 recargarMesas();
 
 const cont = document.getElementById("mesas");
-if (cont) mesas.forEach(mesa => pintarMesa(mesa));
+if (cont) {
+  cont.innerHTML = "";
+  mesas.forEach(mesa => pintarMesa(mesa));
+}
 
 // // 🧹 Reiniciar todas las mesas (eliminar todo)
 // function reiniciarMesas() {
