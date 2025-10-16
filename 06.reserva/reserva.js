@@ -117,7 +117,22 @@ document.getElementById('save2').addEventListener('click', () => {
 
   // Validaciones
   if (!usuario || !cantidad || !fechaStr || !horaStr || !ocasion || !notas || !estado || !mesaId) {
-    return Swal.fire({ title: 'Faltan datos', text: 'Completa todos los campos', icon: 'warning' });
+    let campoFaltante = "";
+
+    if (!usuario) campoFaltante = "el nombre del usuario";
+    else if (!cantidad) campoFaltante = "la cantidad de personas";
+    else if (!fechaStr) campoFaltante = "la fecha de la reserva";
+    else if (!horaStr) campoFaltante = "la hora de la reserva";
+    else if (!ocasion) campoFaltante = "la ocasión";
+    else if (!notas) campoFaltante = "las notas o detalles";
+    else if (!estado) campoFaltante = "el estado de la reserva";
+    else if (!mesaId) campoFaltante = "la mesa seleccionada";
+
+    return Swal.fire({
+      title: `Falta ${campoFaltante}`,
+      text: "Llena todos los campos por favor",
+      icon: "warning"
+    });
   }
 
   if (usuario.length < 2 || /\d/.test(usuario)) {
@@ -160,7 +175,7 @@ document.getElementById('save2').addEventListener('click', () => {
     }
   }
 
-  const match = horaStr.match(/^(\d{1,2}):(\d{2})$/);
+  // const match = horaStr.match(/^(\d{1,2}):(\d{2})$/);
   if (match) {
     const [, hora, minuto] = match;
     const horaNum = parseInt(hora, 10);
@@ -559,7 +574,22 @@ function guardarEdicion(idOriginal) {
 
   // 🔹 Validaciones idénticas a las del guardado normal
   if (!usuario || !cantidad || !fechaStr || !horaStr || !ocasion || !notas || !estado || !mesaId) {
-    return Swal.fire({ title: 'Faltan datos', text: 'Completa todos los campos', icon: 'warning' });
+    let campoFaltante = "";
+
+    if (!usuario) campoFaltante = "el nombre del usuario";
+    else if (!cantidad) campoFaltante = "la cantidad de personas";
+    else if (!fechaStr) campoFaltante = "la fecha de la reserva";
+    else if (!horaStr) campoFaltante = "la hora de la reserva";
+    else if (!ocasion) campoFaltante = "la ocasión";
+    else if (!notas) campoFaltante = "las notas o detalles";
+    else if (!estado) campoFaltante = "el estado de la reserva";
+    else if (!mesaId) campoFaltante = "la mesa seleccionada";
+
+    return Swal.fire({
+      title: `Falta ${campoFaltante}`,
+      text: "Llena todos los campos por favor",
+      icon: "warning"
+    });
   }
 
   if (usuario.length < 2 || /\d/.test(usuario)) {
@@ -709,6 +739,48 @@ function guardarEdicion(idOriginal) {
   mostrarReservasPorFecha(fechaStr);
 }
 
+function reprogramarReservas() {
+  const ahora = new Date();
+  let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
+
+  reservas = reservas.filter(r => {
+    const inicio = parseFechaHora(r.fecha, r.hora);
+    const fin = new Date(inicio.getTime() + 2 * 60 * 60 * 1000);
+
+    // 🔹 1. Confirmar automáticamente si ya llegó la hora
+    if (r.estado === "1" && ahora >= inicio && ahora < fin) {
+      r.estado = "2"; // Confirmada
+    }
+
+    // 🔹 2. Si la reserva ya terminó (más de 2h), pasar a finalizada
+    if (ahora >= fin && ["1", "2"].includes(r.estado)) {
+      r.estado = "4"; // Finalizada
+      // liberar mesa
+      const mesa = mesas.find(m => m.id === r.mesaId);
+      if (mesa) {
+        mesa.estado = "1";
+        mesa.bloqueos = (mesa.bloqueos || []).filter(b => {
+          const bi = new Date(b.inicio).getTime();
+          const bf = new Date(b.fin).getTime();
+          return !(bi === inicio.getTime() && bf === fin.getTime());
+        });
+      }
+    }
+
+    return fin > ahora; // mantener solo futuras o actuales
+  });
+
+  localStorage.setItem("reservas", JSON.stringify(reservas));
+  localStorage.setItem("mesas", JSON.stringify(mesas));
+
+  reservas.forEach(r => {
+    const inicio = parseFechaHora(r.fecha, r.hora);
+    const fin = new Date(inicio.getTime() + 2 * 60 * 60 * 1000);
+    programarCambiosEstado(r.mesaId, inicio, fin);
+  });
+}
+
+
 // eliminar reserva 
 
 function eliminarReserva(idEliminar) {
@@ -771,7 +843,10 @@ function pagarReserva(idReserva) {
   }
 
   Swal.fire("Reserva finalizada", "La reserva fue finalizada y la mesa liberada.", "success");
-  mostrarReservasPorFecha(reserva.fecha);
+mostrarReservasPorFecha(reserva.fecha);
+
+// 🔄 Notificar al index.js que recargue las mesas
+window.dispatchEvent(new StorageEvent("storage", { key: "mesas" }));
 }
 
 

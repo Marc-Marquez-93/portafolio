@@ -111,7 +111,7 @@ function abrirEditarMesa(idMesa) {
   document.getElementById("estado").value = mesa.estado;
   mesa.bloqueos = mesa.bloqueos || [];
 
-    // 🔸 Bloquear el cambio de estado si hay una reserva activa en este momento
+  // 🔸 Bloquear el cambio de estado si hay una reserva activa en este momento
   const ahora = new Date().getTime();
   const estadoSelect = document.getElementById("estado");
   let reservaActiva = false;
@@ -185,10 +185,28 @@ if (btnSave) {
     const ubicacion = document.getElementById("ubicacion").value.trim();
     const estado = document.getElementById("estado").value;
 
-    if (!capacidad || !ubicacion || !estado) {
+    if (!capacidad) {
       Swal.fire({
-        title: "Faltan datos",
-        text: "Por favor completa todos los campos obligatorios",
+        title: "Falta la capacidad",
+        text: "Por favor ingresa cuántas personas puede atender la mesa.",
+        icon: "warning"
+      });
+      return;
+    }
+
+    if (!ubicacion) {
+      Swal.fire({
+        title: "Falta la ubicación",
+        text: "Por favor ingresa la ubicación de la mesa (por ejemplo: Terraza o Interior).",
+        icon: "warning"
+      });
+      return;
+    }
+
+    if (!estado) {
+      Swal.fire({
+        title: "Falta el estado",
+        text: "Selecciona si la mesa está disponible, ocupada o deshabilitada.",
         icon: "warning"
       });
       return;
@@ -244,6 +262,9 @@ if (btnSave) {
       title: "Mesa guardada",
       text: "¡La mesa fue registrada exitosamente!",
       icon: "success"
+    }).then(() => {
+      const modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
+      modal.hide(); // ✅ cerrar modal solo después del SweetAlert
     });
 
     document.getElementById("capacidad").value = "";
@@ -272,7 +293,7 @@ if (modalAgregar) {
 function actualizarReloj() {
   const relojDiv = document.getElementById("reloj");
   const ahora = new Date();
-  
+
   const opciones = {
     weekday: "long",
     year: "numeric",
@@ -282,7 +303,7 @@ function actualizarReloj() {
     minute: "2-digit",
     hour12: true
   };
-  
+
   relojDiv.textContent = ahora.toLocaleString("es-CO", opciones);
 }
 
@@ -324,35 +345,14 @@ actualizarReloj();
 recargarMesas();
 
 const cont = document.getElementById("mesas");
-if (cont) {
-  cont.innerHTML = "";
-  mesas.forEach(mesa => pintarMesa(mesa));
-}
+if (cont) mesas.forEach(mesa => pintarMesa(mesa));
 
-// // 🧹 Reiniciar todas las mesas (eliminar todo)
-// function reiniciarMesas() {
-//   Swal.fire({
-//     title: "¿Reiniciar mesas?",
-//     text: "Se eliminarán todas las mesas y bloqueos. Esta acción no se puede deshacer.",
-//     icon: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#d33",
-//     cancelButtonColor: "#3085d6",
-//     confirmButtonText: "Sí, reiniciar",
-//     cancelButtonText: "Cancelar"
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       mesas = [];
-//       localStorage.removeItem("mesas");
-//       const cont = document.getElementById("mesas");
-//       if (cont) cont.innerHTML = "";
-//       Swal.fire({
-//         title: "Listo",
-//         text: "Se han eliminado todas las mesas.",
-//         icon: "success",
-//         timer: 1500,
-//         showConfirmButton: false
-//       });
-//     }
-//   });
-// }
+// 🔄 Escuchar cambios en localStorage desde otras pestañas o scripts
+window.addEventListener("storage", (event) => {
+  if (event.key === "mesas") {
+    // Esperar un momento para asegurar que los datos ya se guardaron
+    setTimeout(() => {
+      location.reload(); // 🔥 Recargar la página automáticamente
+    }, 2000);
+  }
+});
