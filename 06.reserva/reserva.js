@@ -175,7 +175,7 @@ document.getElementById('save2').addEventListener('click', () => {
     }
   }
 
-  // const match = horaStr.match(/^(\d{1,2}):(\d{2})$/);
+  const match = horaStr.match(/^(\d{1,2}):(\d{2})$/);
   if (match) {
     const [, hora, minuto] = match;
     const horaNum = parseInt(hora, 10);
