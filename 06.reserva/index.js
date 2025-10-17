@@ -344,9 +344,6 @@ setInterval(() => {
 actualizarReloj();
 recargarMesas();
 
-const cont = document.getElementById("mesas");
-if (cont) mesas.forEach(mesa => pintarMesa(mesa));
-
 // 🔄 Escuchar cambios en localStorage desde otras pestañas o scripts
 window.addEventListener("storage", (event) => {
   if (event.key === "mesas") {
