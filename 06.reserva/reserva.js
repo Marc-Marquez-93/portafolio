@@ -97,9 +97,14 @@ function cambiarEstadoMesa(id, nuevoEstado) {
   const mesas = JSON.parse(localStorage.getItem("mesas")) || [];
   const mesa = mesas.find(m => m.id === id);
   if (mesa) {
-    mesa.estado = String(nuevoEstado); // 🔹 siempre string
+    mesa.estado = String(nuevoEstado);
     localStorage.setItem("mesas", JSON.stringify(mesas));
     console.log(`Mesa ${id} actualizada a estado ${nuevoEstado}`);
+
+    // 🔹 Actualizar reservas visualmente del día actual
+    const hoy = formatearFecha(new Date());
+    const fechaActual = document.getElementById("datepicker2")?.value || hoy;
+    mostrarReservasPorFecha(fechaActual);
   }
 }
 
