@@ -849,6 +849,32 @@ mostrarReservasPorFecha(reserva.fecha);
 window.dispatchEvent(new StorageEvent("storage", { key: "mesas" }));
 }
 
+//cambios de estado automaticos
+
+function actualizarReservasAutomaticamente() {
+  const ahora = new Date().getTime();
+  let cambios = false;
+
+  reservas.forEach(reserva => {
+    const horaInicio = new Date(reserva.fecha + " " + reserva.hora).getTime();
+
+    // Si ya llegó la hora y aún está pendiente → confirmarla
+    if (ahora >= horaInicio && reserva.estado === "pendiente") {
+      reserva.estado = "confirmada";
+      cambios = true;
+    }
+  });
+
+  if (cambios) {
+    localStorage.setItem("reservas", JSON.stringify(reservas));
+
+    // 🔥 Limpia el contenedor antes de repintar
+    const contenedor = document.getElementById("reservas-container");
+    if (contenedor) contenedor.innerHTML = "";
+
+    pintarReservas(); // o mostrarReservasPendientes(), según tu código
+  }
+}
 
 
 
