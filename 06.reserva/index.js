@@ -338,6 +338,7 @@ function recargarMesas() {
 setInterval(() => {
   actualizarReloj();
   recargarMesas();
+  actualizarReservasAutomaticamente();
 }, 60000); // cada 60 segundos
 
 // Llamar al cargar la página
