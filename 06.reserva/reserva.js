@@ -747,6 +747,7 @@ function guardarEdicion(idOriginal) {
 function reprogramarReservas() {
   const ahora = new Date();
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
+  let cambios = false; // para detectar si algo cambió
 
   reservas = reservas.filter(r => {
     const inicio = parseFechaHora(r.fecha, r.hora);
@@ -755,15 +756,20 @@ function reprogramarReservas() {
     // 🔹 1. Confirmar automáticamente si ya llegó la hora
     if (r.estado === "1" && ahora >= inicio && ahora < fin) {
       r.estado = "2"; // Confirmada
+      cambios = true;
+      console.log(`Reserva ${r.id} pasó a CONFIRMADA`);
     }
 
     // 🔹 2. Si la reserva ya terminó (más de 2h), pasar a finalizada
     if (ahora >= fin && ["1", "2"].includes(r.estado)) {
       r.estado = "4"; // Finalizada
+      cambios = true;
+      console.log(`Reserva ${r.id} pasó a FINALIZADA`);
+
       // liberar mesa
       const mesa = mesas.find(m => m.id === r.mesaId);
       if (mesa) {
-        mesa.estado = "1";
+        mesa.estado = "1"; // disponible
         mesa.bloqueos = (mesa.bloqueos || []).filter(b => {
           const bi = new Date(b.inicio).getTime();
           const bf = new Date(b.fin).getTime();
@@ -775,16 +781,23 @@ function reprogramarReservas() {
     return fin > ahora; // mantener solo futuras o actuales
   });
 
+  // 🔹 Guardar cambios
   localStorage.setItem("reservas", JSON.stringify(reservas));
   localStorage.setItem("mesas", JSON.stringify(mesas));
 
+  // 🔹 Si hubo cambios, repintar la interfaz
+  if (cambios) {
+    const fechaActual = document.getElementById("datepicker2")?.value || formatearFecha(new Date());
+    mostrarReservasPorFecha(fechaActual);
+  }
+
+  // 🔹 Reprogramar cambios futuros
   reservas.forEach(r => {
     const inicio = parseFechaHora(r.fecha, r.hora);
     const fin = new Date(inicio.getTime() + 2 * 60 * 60 * 1000);
     programarCambiosEstado(r.mesaId, inicio, fin);
   });
 }
-
 
 // eliminar reserva 
 
