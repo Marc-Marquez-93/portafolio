@@ -875,6 +875,37 @@ function actualizarReservasAutomaticamente() {
     pintarReservas(); // o mostrarReservasPendientes(), según tu código
   }
 }
+function actualizarReservasAutomaticamente() {
+  const ahora = new Date().getTime();
+  let cambios = false;
+
+  reservas.forEach(reserva => {
+    const horaInicio = new Date(`${reserva.fecha} ${reserva.hora}`).getTime();
+
+    // Si ya llegó la hora y aún está pendiente
+    if (ahora >= horaInicio && reserva.estado === "pendiente") {
+      reserva.estado = "confirmada";
+      cambios = true;
+    }
+  });
+
+  if (cambios) {
+    localStorage.setItem("reservas", JSON.stringify(reservas));
+
+    // 🔁 Repintar reservas actualizadas
+    const fechaActual = $('#datepicker2').val().trim();
+    if (fechaActual) {
+      mostrarReservasPorFecha(fechaActual);
+    } else {
+      mostrarReservasPorFecha(new Date().toISOString().split('T')[0]);
+    }
+  }
+}
+// ⏱️ Actualizar reservas automáticamente cada minuto
+setInterval(() => {
+  actualizarReservasAutomaticamente();
+}, 60000);
+
 
 
 
