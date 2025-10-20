@@ -3,18 +3,62 @@
 // Inicializar reservas global
 let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 
-// Inicializar datepicker y timepicker
-$('#datepicker').datepicker({
-  minDate: new Date(),
-  uiLibrary: 'bootstrap5'
+// 🔹 Función para obtener fecha de hoy en formato MM/DD/YYYY
+function obtenerHoyMMDDYYYY() {
+  const hoy = new Date();
+  const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dia = String(hoy.getDate()).padStart(2, '0');
+  const año = hoy.getFullYear();
+  return `${mes}/${dia}/${año}`;
+}
+
+// 🔹 Esperar a que el DOM esté listo antes de inicializar
+$(document).ready(() => {
+  const hoyFormato = obtenerHoyMMDDYYYY();
+
+  // 🔹 Inicializar datepicker con la fecha actual
+  $('#datepicker2').datepicker({
+    minDate: new Date(),
+    uiLibrary: 'bootstrap5',
+    value: hoyFormato
+  });
+
+  // 🔹 Asegurar que el input tenga la fecha actual
+  $('#datepicker2').val(hoyFormato);
+
+  // 🔹 Inicializar timepicker
+  $('#timepicker').timepicker({
+    uiLibrary: 'bootstrap5',
+    format: 'HH:MM',
+    minTime: '08:00',
+    maxTime: '20:00'
+  });
+
+  // 🔹 Esperar 2 s al cargar la página y hacer clic en "Filtrar"
+  setTimeout(() => {
+    const fechaSeleccionada = $('#datepicker2').val();
+    if (fechaSeleccionada === hoyFormato) {
+      console.log('✅ Página cargada. Ejecutando filtro inicial...');
+      document.getElementById('filtrar').click();
+    } else {
+      console.log('⚠️ La fecha no es la de hoy. No se filtra automáticamente.');
+    }
+  }, 2000);
+
+  // 🔹 Recargar cada 60 s si la fecha seleccionada es la de hoy
+  setInterval(() => {
+    const fechaSeleccionada = $('#datepicker2').val();
+    const fechaActual = obtenerHoyMMDDYYYY();
+
+    console.log('⏱️ Verificando auto-reload → seleccionada:', fechaSeleccionada, 'actual:', fechaActual);
+
+    if (fechaSeleccionada === fechaActual) {
+      console.log('♻️ Recargando página...');
+      location.reload();
+    }
+  }, 60000);
 });
 
-$('#timepicker').timepicker({
-  uiLibrary: 'bootstrap5',
-  format: 'HH:MM', // 🔹 como en tu código original
-  minTime: '08:00',
-  maxTime: '20:00'
-});
 
 // Generar ID de reserva (como en tu código original)
 function generarIdReserva() {
