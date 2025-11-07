@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú de Armas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div id="menu">
+    <div id="menu-container">
+      <!-- Card de arma a la izquierda -->
+      <div id="card-arma">
+        <h2>AK-47</h2>
+        <p>Daño: 75<br>Cadencia: Media<br>Precisión: Alta</p>
+      </div>
+
+      <!-- Canvas de Three.js al centro-derecha -->
+      <div id="three-wrapper">
+        <div id="flecha-izq">←</div>
+        <canvas id="three-canvas"></canvas>
+        <div id="flecha-der">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP para animaciones -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Three.js para renderizado 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  <!-- Script principal -->
+  <script src="./gsap-menu.js"></script>
+</body>
+
+</html>

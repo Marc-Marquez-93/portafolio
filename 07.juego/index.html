@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>juego</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="./entrada.mp4" type="video/mp4">
+      Tu navegador no soporta videos en HTML5.
+    </video>
+  </div>
+
+  <div class="contenido">
+      <h1>Texto sobre el video</h1>
+      <p id="texto"></p>
+  </div>
+  <div id="footer">
+    <div id="btjugar">
+      <a href="./menu.html" class="an">Jugar</a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script src="./gsap.js"></script>
+</body>
+
+</html>
