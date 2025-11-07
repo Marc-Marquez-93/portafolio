@@ -38,7 +38,7 @@ body, html {
   bottom: 0;
   width: 100%;
   height: 70px;
-  background-color: rgb(20, 93, 32);
+  background-color: #d8822c;
   z-index: 2;
   display: grid;
   justify-content: center;
@@ -98,26 +98,281 @@ body {
   z-index: -50;
 }
 
+#menu {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./fotomenu.png);
+  background-size: cover; 
+  background-position: top center; 
+  background-repeat: no-repeat;
+  z-index: 1;
+}
 
-#menu-container {
+#texto {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+/* parte de menu cards */
+
+.menu {
+  position: relative;
+  width: 100%;
+  height: 420px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  gap: 50px;
+  overflow: hidden;
 }
 
-#card-arma {
-  width: 300px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+/* 🔹 Card base (tu diseño + carrusel adaptable) */
+.card-arma {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 700px;
+  height: 250px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 111, 0, 0.8);
+  border-radius: 15px;
   padding: 20px;
-  border-radius: 10px;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 111, 0, 0.5);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-#three-canvas {
-  width: 600px;
-  height: 600px;
-  background-color: transparent;
+/* 🔸 Animación al pasar el mouse */
+.card-arma:hover {
+  transform: translate(-50%, -50%) scale(1.02);
 }
-  
+
+/* 🔹 Contenido de texto */
+.info-arma {
+  flex: 1;
+}
+
+.info-arma h2 {
+  color: rgb(255, 111, 0);
+  margin-bottom: 10px;
+  font-size: 28px;
+  text-shadow: 0 0 8px rgba(255, 111, 0, 0.6);
+}
+
+.info-arma p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.info-arma span {
+  color: rgb(255, 200, 100);
+  font-weight: bold;
+}
+
+/* 🔹 Imagen */
+.imagen-arma {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.imagen-arma img {
+  width: 230px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+/* 🔹 Efectos según posición en el carrusel */
+.center {
+  width: 600px;
+  height: 250px;
+  opacity: 1;
+  z-index: 3;
+  filter: none;
+}
+
+.left {
+  width: 420px;
+  height: 210px;
+  opacity: 0.6;
+  z-index: 1;
+  transform: translate(-80%, -50%) scale(0.85);
+  filter: blur(1.5px);
+}
+
+.right {
+  width: 420px;
+  height: 210px;
+  opacity: 0.6;
+  z-index: 1;
+  transform: translate(-20%, -50%) scale(0.85);
+  filter: blur(1.5px);
+}
+
+/* 🔹 Botones */
+.botones-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 20px;
+  z-index: 10;
+  transition: top 0.5s ease;
+}
+
+.botones-menu button {
+  background-color: #1b1b1b;
+  color: orange;
+  border: 2px solid orange;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+}
+
+.botones-menu button:hover {
+  background-color: orange;
+  color: black;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+}
+
+/* 🔹 Responsive suave */
+@media (max-width: 768px) {
+  .card-arma {
+    width: 90%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imagen-arma img {
+    width: 180px;
+  }
+
+  .info-arma h2 {
+    font-size: 22px;
+  }
+}
+
+.btn-seleccionar {
+  position: fixed;
+  bottom: 40px;
+  right: 50px;
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 111, 0, 0.5);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.btn-seleccionar:hover {
+  background-color: #ffa040;
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 150, 0, 0.8);
+}
+
+
+/* parte de vehiculos */
+
+/* 🔹 Cards de vehículos (imagen arriba, info abajo, ajustadas más arriba) */
+.card-vehiculo {
+  position: absolute;
+  top: 45%; /* 🔹 Antes 50%, subidas un poco */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  min-height: 340px;
+  max-height: 360px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 162, 255, 0.8);
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-align: center;
+  overflow: hidden; /* 🔹 Evita desbordes */
+}
+
+/* 🔹 Imagen más ajustada y controlada */
+.imagen-vehiculo img {
+  width: 100%;
+  height: 160px; /* 🔹 un poco menos alta */
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* 🔹 Contenedor de texto limitado */
+.info-vehiculo {
+  flex: 1;
+  overflow-y: auto; /* 🔹 si el texto es largo, permite scroll interno */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,162,255,0.6) transparent;
+  margin-top: 10px;
+  padding: 0 5px;
+}
+
+/* 🔹 Estilos del texto */
+.info-vehiculo h2 {
+  color: rgb(0, 162, 255);
+  margin-bottom: 6px;
+  font-size: 20px;
+}
+
+.info-vehiculo p {
+  font-size: 15px;
+  margin: 3px 0;
+  line-height: 1.3;
+}
+
+/* 🔹 Ajuste visual cuando están más pequeñas */
+.card-vehiculo[style*="scale(0.85)"] {
+  top: 43%; /* 🔹 Subidas un poco más cuando son las laterales */
+  opacity: 0.8;
+}
+
+
+/* Botón seleccionar */
+.btn-seleccionar {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 162, 255, 0.6);
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.btn-seleccionar:hover {
+  background-color: white;
+  color: #0d6efd;
+  transform: scale(1.1);
+}

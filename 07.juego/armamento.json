@@ -1,0 +1,112 @@
+{
+  "armas": [
+    {
+      "id": "arma-01",
+      "nombre": "AK-47",
+      "daño": 75,
+      "cadencia": "Media",
+      "precision": "Alta",
+      "alcance": "Media",
+      "descripcion": "Rifle automático confiable, buen daño por tiro.",
+      "imagen": "https://media.istockphoto.com/photos/-picture-id182717773?k=6&m=182717773&s=612x612&w=0&h=OGQQahtCc08viVkK3mAIhbshqPo5LLm1DGCfQqtKdxo="
+    },
+    {
+      "id": "arma-02",
+      "nombre": "M4A1",
+      "daño": 65,
+      "cadencia": "Alta",
+      "precision": "Media",
+      "alcance": "Media-Alta",
+      "descripcion": "Rifle versátil, estable y con buena cadencia.",
+      "imagen": "https://www.armytimes.com/resizer/Rbej65-hPPf9Vmd6iP-jQG-czps=/1440x0/filters:format(jpg):quality(70)/arc-anglerfish-arc2-prod-mco.s3.amazonaws.com/public/GJMK4T6JXBADVOWMMEDOTQ2PQA.jpg"
+    },
+    {
+      "id": "arma-03",
+      "nombre": "AWP",
+      "daño": 120,
+      "cadencia": "Baja",
+      "precision": "Muy alta",
+      "alcance": "Larga",
+      "descripcion": "Francotirador potente de un solo disparo letal.",
+      "imagen": "https://th.bing.com/th/id/R.e0db2e6aa766fe4e84ca03d5a2a6735a?rik=sOW2P9sXvGWc2Q&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "arma-04",
+      "nombre": "MP5",
+      "daño": 40,
+      "cadencia": "Muy alta",
+      "precision": "Baja-Media",
+      "alcance": "Corta",
+      "descripcion": "Subfusil compacto, excelente en combates cercanos.",
+      "imagen": "https://media.istockphoto.com/photos/submachine-gun-mp5-isolated-picture-id474761006?k=20&m=474761006&s=612x612&w=0&h=hUMXWkEQBWT47BZ6GWyqMa73HQEzipBsDWr3FNDUfaA="
+    },
+    {
+      "id": "arma-05",
+      "nombre": "SCAR-L",
+      "daño": 70,
+      "cadencia": "Media-Alta",
+      "precision": "Media",
+      "alcance": "Media",
+      "descripcion": "Rifle moderno y equilibrado, buena estabilidad.",
+      "imagen": "https://tse4.mm.bing.net/th/id/OIP.WZ7kLLJi01mAuoWH_Fa_tgHaCa?rs=1&pid=ImgDetMain&o=7&rm=3"
+    }
+  ],
+  "bombas": [
+    {
+      "id": "bomba-01",
+      "nombre": "Carga C4",
+      "tipo": "Explosivo",
+      "daño": 200,
+      "radio": "Alto",
+      "descripcion": "Explosivo manual potente, requiere detonador.",
+      "imagen": "https://p.turbosquid.com/ts-thumb/bK/U33v0J/EjJRUJXq/bombc4_a10/jpg/1517630113/600x600/fit_q87/497648e71784ff83aa93f2b670d03f9602c3a66c/bombc4_a10.jpg"
+    },
+    {
+      "id": "bomba-02",
+      "nombre": "Carga de Proximidad",
+      "tipo": "Explosivo",
+      "daño": 120,
+      "radio": "Medio",
+      "descripcion": "Detona al acercarse un enemigo; útil para trampas.",
+      "imagen": "https://historiaybiografias.com/archivos_varios4/explosivos.jpg"
+    },
+    {
+      "id": "bomba-03",
+      "nombre": "Bomba de Tiempo",
+      "tipo": "Explosivo",
+      "daño": 160,
+      "radio": "Medio-Alto",
+      "descripcion": "Detonación retardada programable.",
+      "imagen": "https://tse2.mm.bing.net/th/id/OIP.o9GS0buXq_sWXsSGe7jOLQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+    }
+  ],
+  "granadas": [
+    {
+      "id": "granada-01",
+      "nombre": "Granada Fragmentación",
+      "tipo": "Letal",
+      "daño": 100,
+      "efecto": "Fragmentos",
+      "descripcion": "Explosión letal en área, buena contra grupos.",
+      "imagen": "https://img.freepik.com/premium-photo/hand-grenade-isolated-white-background-explosive-weapon_495423-46265.jpg"
+    },
+    {
+      "id": "granada-02",
+      "nombre": "Granada Flash (Stun)",
+      "tipo": "No letal",
+      "daño": 0,
+      "efecto": "Ceguera/Aturde",
+      "descripcion": "Ciega y desorienta temporalmente al enemigo.",
+      "imagen": "https://th.bing.com/th/id/R.d811b00bfd691211601af649ba045eb9?rik=0sGfXz3U0ybO8Q&riu=http%3a%2f%2fimg.redwolfairsoft.com%2fupload%2fproduct%2fimg%2fG-08-032-L.jpg&ehk=K3MJCNDnz8g%2fz6yHadAh7%2bYVoO7LAdy3HMd82R0xx%2bA%3d&risl=&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "granada-03",
+      "nombre": "Granada Humo",
+      "tipo": "Táctica",
+      "daño": 0,
+      "efecto": "Cobertura",
+      "descripcion": "Genera una nube de humo para ocultar movimientos.",
+      "imagen": "https://img.freepik.com/fotos-premium/granada-humo-aislada-cubierta-visual-recipiente-cilindrico-oli-sobre-fondo-blanco-concepto-militar_655090-631830.jpg"
+    }
+  ]
+}
