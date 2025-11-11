@@ -376,3 +376,166 @@ body {
   color: #0d6efd;
   transform: scale(1.1);
 }
+
+
+/* animasicones adicionales  */
+/* ==== BARRA SUPERIOR ==== */
+.barra-superior {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 2px solid #FFA500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  color: #FFB845;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+.barra-opciones span {
+  margin-left: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.barra-opciones span:hover {
+  transform: scale(1.2);
+}
+
+/* ==== TÍTULO Y DESCRIPCIÓN ==== */
+#tituloJuego {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: #FFB845;
+  text-shadow: 0 0 25px #FFA500;
+  z-index: 5;
+}
+.descripcion-juego {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #FFB845;
+  font-family: 'Orbitron', sans-serif;
+  max-width: 600px;
+  z-index: 5;
+}
+.descripcion-juego h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #FFA500;
+}
+.descripcion-juego p {
+  font-size: 1rem;
+  color: rgba(255, 230, 180, 0.9);
+}
+
+/* ==== PERFIL DE USUARIO ==== */
+.perfil-jugador {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border: 2px solid #FFA500;
+  border-radius: 12px;
+  color: #FFF3C0;
+  font-family: 'Orbitron', sans-serif;
+  z-index: 8;
+}
+.avatar-jugador {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid #FFA500;
+  object-fit: cover;
+}
+
+/* ==== TABLAS LATERALES ==== */
+.tabla-lateral {
+  position: absolute;
+  top: 40%;
+  width: 260px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #FFB845;
+  border-radius: 12px;
+  padding: 15px;
+  color: #FFF3C0;
+  font-family: monospace;
+  z-index: 7;
+}
+.tabla-lateral.izq { left: 5%; }
+.tabla-lateral.der { right: 5%; }
+.tabla-lateral h3 {
+  color: #FFA500;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  text-align: center;
+  text-shadow: 0 0 10px #FFB845;
+}
+
+/* ==== EVENTOS CON PROGRESO ==== */
+.evento {
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+.progreso-barra {
+  width: 100%;
+  height: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 5px 0;
+}
+.progreso {
+  height: 100%;
+  background: linear-gradient(90deg, #FFB845, #FFA500);
+  transition: width 0.6s ease;
+}
+.progreso-texto {
+  font-size: 0.8rem;
+  color: #FFDA7C;
+}
+
+/* ==== BOTONES ==== */
+.botones-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row; /* 🔹 cambia de column → row */
+  gap: 20px;           /* espacio entre botones */
+  z-index: 10;
+}
+
+.botones-menu button {
+  background: rgba(255, 184, 69, 0.2);
+  border: 2px solid #FFA500;
+  color: #FFF8E1;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  padding: 12px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.botones-menu button:hover {
+  background: #FFB845;
+  color: black;
+  box-shadow: 0 0 20px #FFB845;
+}

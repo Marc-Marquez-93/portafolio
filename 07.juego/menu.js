@@ -1,4 +1,7 @@
-// menu.js completo (reemplaza tu archivo por este)
+// =====================================================
+// ✅ MENU.JS FINAL — Funcional y limpio
+// =====================================================
+
 let armamento = [];
 
 fetch('./armamento.json')
@@ -7,11 +10,7 @@ fetch('./armamento.json')
     return response.json();
   })
   .then(data => {
-    armamento = [
-      ...data.armas,
-      ...data.bombas,
-      ...data.granadas
-    ];
+    armamento = [...data.armas, ...data.bombas, ...data.granadas];
     console.log("✅ Armamento cargado correctamente:", armamento);
   })
   .catch(error => console.error("❌ Error:", error));
@@ -19,7 +18,9 @@ fetch('./armamento.json')
 window.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menu");
 
-  // animación inicial del menú (entrada + vibración)
+  // =====================================================
+  // 🔹 ANIMACIÓN INICIAL DEL MENÚ
+  // =====================================================
   gsap.from(menu, {
     x: "100vw",
     duration: 1,
@@ -36,7 +37,45 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // contenedor de botones (Armas / Bombas / Granadas)
+  // =====================================================
+  // 🔹 BARRA SUPERIOR (HUD)
+  // =====================================================
+  const barra = document.createElement("div");
+  barra.classList.add("barra-superior");
+  barra.innerHTML = `
+    <div class="barra-logo">WARZONE OPS</div>
+    <div class="barra-opciones">
+      <span>⚙️</span>
+      <span>🔊</span>
+      <span>❓</span>
+    </div>
+  `;
+  document.body.appendChild(barra);
+  gsap.from(".barra-superior", { y: -100, duration: 1, ease: "power3.out" });
+
+  // =====================================================
+  // 🔹 TÍTULO Y DESCRIPCIÓN
+  // =====================================================
+  const titulo = document.createElement("h1");
+  titulo.id = "tituloJuego";
+  titulo.textContent = "WARZONE OPS";
+  document.body.appendChild(titulo);
+
+  const descripcion = document.createElement("div");
+  descripcion.classList.add("descripcion-juego");
+  descripcion.innerHTML = `
+    <h2>Operación “Storm Front”</h2>
+    <p>Selecciona tu arsenal y prepárate para el combate. 
+    Domina el territorio, asciende de rango y demuestra tu poder en el campo de batalla.</p>
+  `;
+  document.body.appendChild(descripcion);
+
+  gsap.from("#tituloJuego", { opacity: 0, y: -40, scale: 0.8, duration: 1.3, ease: "back.out(1.7)" });
+  gsap.from(".descripcion-juego", { opacity: 0, y: 30, duration: 1.5, ease: "power2.out" });
+
+  // =====================================================
+  // 🔹 BOTONES PRINCIPALES
+  // =====================================================
   const contBotones = document.createElement("div");
   contBotones.classList.add("botones-menu");
 
@@ -52,17 +91,76 @@ window.addEventListener("DOMContentLoaded", () => {
   contBotones.append(btnArmas, btnBombas, btnGranadas);
   menu.appendChild(contBotones);
 
-  // botón "Seleccionar" ya está en el HTML; lo buscamos y lo ocultamos ahora
+  gsap.utils.toArray(".botones-menu button").forEach((btn, i) => {
+    gsap.to(btn, { y: "+=5", repeat: -1, yoyo: true, duration: 1.5 + i * 0.3, ease: "sine.inOut" });
+  });
+
+  // =====================================================
+  // 🔹 PERFIL DE USUARIO
+  // =====================================================
+  const perfil = document.createElement("div");
+  perfil.classList.add("perfil-jugador");
+  perfil.innerHTML = `
+    <img src="https://cdn4.vectorstock.com/i/1000x1000/77/23/soldier-avatar-icon-vector-32077723.jpg" alt="avatar" class="avatar-jugador" />
+    <div>
+      <h3>Capitán Miguel</h3>
+      <p>Rango: Élite</p>
+    </div>
+  `;
+  document.body.appendChild(perfil);
+  gsap.from(".perfil-jugador", { opacity: 0, y: 40, duration: 1, delay: 0.5 });
+
+  // =====================================================
+  // 🔹 TABLAS LATERALES
+  // =====================================================
+  const eventos = [
+    { nombre: "🔥 Doble XP", progreso: 65 },
+    { nombre: "🎯 Torneo “Precision Strike”", progreso: 40 },
+    { nombre: "🪖 Misión de clan semanal", progreso: 85 }
+  ];
+
+  const modos = [
+    { nombre: "⚔️ Batalla por equipos", progreso: 100 },
+    { nombre: "💣 Desactivación táctica", progreso: 75 },
+    { nombre: "🚁 Invasión aérea", progreso: 55 }
+  ];
+
+  const tablaIzq = crearTablaLateral("Eventos Activos", eventos, "izq");
+  const tablaDer = crearTablaLateral("Modos de Juego", modos, "der");
+  document.body.append(tablaIzq, tablaDer);
+
+  gsap.from([".tabla-lateral.izq", ".tabla-lateral.der"], { opacity: 0, y: 50, duration: 1.3, stagger: 0.3, ease: "power2.out" });
+
+  function crearTablaLateral(titulo, data, lado) {
+    const cont = document.createElement("div");
+    cont.classList.add("tabla-lateral", lado);
+    const header = document.createElement("h3");
+    header.textContent = titulo;
+    cont.appendChild(header);
+    data.forEach(ev => {
+      const evento = document.createElement("div");
+      evento.classList.add("evento");
+      evento.innerHTML = `
+        <span>${ev.nombre}</span>
+        <div class="progreso-barra">
+          <div class="progreso" style="width: ${ev.progreso}%;"></div>
+        </div>
+        <span class="progreso-texto">${ev.progreso}%</span>
+      `;
+      cont.appendChild(evento);
+    });
+    return cont;
+  }
+
+  // =====================================================
+  // 🔹 BOTÓN "Seleccionar"
+  // =====================================================
   const btnSeleccionar = document.getElementById("btnSeleccionar");
   if (btnSeleccionar) {
-    // oculto al inicio para que exista en el DOM pero no se vea ni reciba clicks
     btnSeleccionar.style.display = "none";
     btnSeleccionar.style.opacity = 0;
     btnSeleccionar.style.pointerEvents = "none";
-  }
 
-  // evento del botón seleccionar (está listo aunque esté oculto)
-  if (btnSeleccionar) {
     btnSeleccionar.addEventListener("click", () => {
       gsap.to(menu, {
         scale: 1.2,
@@ -70,9 +168,7 @@ window.addEventListener("DOMContentLoaded", () => {
         filter: "blur(10px)",
         duration: 1,
         ease: "power2.inOut",
-        onComplete: () => {
-          window.location.href = "vehiculos.html";
-        }
+        onComplete: () => (window.location.href = "vehiculos.html")
       });
 
       gsap.to(btnSeleccionar, {
@@ -81,7 +177,6 @@ window.addEventListener("DOMContentLoaded", () => {
         duration: 0.5,
         ease: "power2.out",
         onComplete: () => {
-          // opcional: mantener oculto
           btnSeleccionar.style.display = "none";
           btnSeleccionar.style.pointerEvents = "none";
         }
@@ -89,14 +184,72 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // eventos de categoría -> pasamos btnSeleccionar para que mostrarCategoria lo muestre
-  btnArmas.addEventListener("click", () => mostrarCategoria("arma", btnSeleccionar));
-  btnBombas.addEventListener("click", () => mostrarCategoria("bomba", btnSeleccionar));
-  btnGranadas.addEventListener("click", () => mostrarCategoria("granada", btnSeleccionar));
+  // =====================================================
+  // 🔹 FUNCIÓN PARA OCULTAR DECORACIONES
+  // =====================================================
+  function ocultarDecoraciones() {
+    const selectors = [
+      ".barra-superior",
+      ".descripcion-juego",
+      ".tabla-lateral",
+      ".panel-lateral",
+      ".decor",
+      ".hud-overlay",
+      ".luz",
+      ".npc",
+      ".tituloJuego"
+    ];
+
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (el.closest && el.closest("#menu")) return;
+        gsap.to(el, {
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => (el.style.display = "none")
+        });
+      });
+    });
+
+    // const contBot = document.querySelector(".botones-menu");
+    // if (contBot) gsap.to(contBot, { opacity: 0, y: 30, duration: 0.6, onComplete: () => (contBot.style.display = "none") });
+
+    // Avatar visible pero sin texto
+    const perfil = document.querySelector(".perfil-jugador");
+    if (perfil) {
+      const avatarImg = perfil.querySelector(".avatar-jugador");
+      if (avatarImg) {
+        gsap.to(perfil, { width: "80px", height: "80px", duration: 0.6 });
+        perfil.querySelectorAll("h3, p").forEach(t =>
+          gsap.to(t, { opacity: 0, duration: 0.4, onComplete: () => (t.style.display = "none") })
+        );
+      }
+    }
+  }
+
+  // =====================================================
+  // 🔹 EVENTOS DE CATEGORÍA
+  // =====================================================
+  btnArmas.addEventListener("click", () => {
+    mostrarCategoria("arma", btnSeleccionar);
+    gsap.delayedCall(0.28, ocultarDecoraciones);
+  });
+
+  btnBombas.addEventListener("click", () => {
+    mostrarCategoria("bomba", btnSeleccionar);
+    gsap.delayedCall(0.28, ocultarDecoraciones);
+  });
+
+  btnGranadas.addEventListener("click", () => {
+    mostrarCategoria("granada", btnSeleccionar);
+    gsap.delayedCall(0.28, ocultarDecoraciones);
+  });
 });
 
-
-// Crear una card individual
+// =====================================================
+// 🔹 FUNCIONES DE CARDS
+// =====================================================
 function crearCard(item) {
   const card = document.createElement("div");
   card.classList.add("card-arma");
@@ -115,29 +268,21 @@ function crearCard(item) {
   const imagen = document.createElement("img");
   imagen.src = item.imagen || "";
   imagen.alt = item.nombre || "";
-
   imagenDiv.appendChild(imagen);
-  card.appendChild(info);
-  card.appendChild(imagenDiv);
 
+  card.append(info, imagenDiv);
   return card;
 }
 
-
-// Mostrar cards con animación tipo carrusel (no circular)
-// recibe btnSeleccionar para poder mostrarlo cuando el usuario seleccione categoría
 function mostrarCategoria(tipo, btnSeleccionar) {
   const menu = document.getElementById("menu");
   const contBotones = document.querySelector(".botones-menu");
 
-  // Quitar cards anteriores
   document.querySelectorAll(".card-arma").forEach(c => c.remove());
 
-  // Filtrar por tipo
   const seleccion = armamento.filter(obj => obj.id.startsWith(tipo));
   if (seleccion.length === 0) return;
 
-  // Crear y agregar cards
   const cards = seleccion.map(crearCard);
   cards.forEach(card => {
     menu.appendChild(card);
@@ -147,28 +292,17 @@ function mostrarCategoria(tipo, btnSeleccionar) {
     card.style.transform = "translate(-50%, -50%)";
   });
 
-  // Animar subida de botones
-  gsap.to(contBotones, {
-    top: "10%",
-    scale: 0.9,
-    duration: 0.7,
-    ease: "power2.out"
-  });
+  gsap.to(contBotones, { top: "10%", scale: 0.9, duration: 0.7, ease: "power2.out" });
 
-  // Mostrar el botón Seleccionar si estaba oculto (AHORA SÍ se muestra tras elegir categoría)
   if (btnSeleccionar && btnSeleccionar.style.display === "none") {
     btnSeleccionar.style.display = "block";
     btnSeleccionar.style.pointerEvents = "auto";
-    gsap.fromTo(btnSeleccionar,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }
-    );
+    gsap.fromTo(btnSeleccionar, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" });
   }
 
   let currentIndex = 0;
   actualizarCarrusel();
 
-  // Eventos de clic en cards
   cards.forEach((card, index) => {
     card.addEventListener("click", () => {
       currentIndex = index;
@@ -176,49 +310,18 @@ function mostrarCategoria(tipo, btnSeleccionar) {
     });
   });
 
-  // Actualizar la posición visual del carrusel
   function actualizarCarrusel() {
     cards.forEach((card, i) => {
       let x = 0, scale = 1, opacity = 1, z = 3, width = "400px", height = "300px";
-
       if (i < currentIndex - 1 || i > currentIndex + 1) {
         opacity = 0;
         z = 0;
-      } else if (i === currentIndex) {
-        // Card principal (centro)
-        x = 0;
-        scale = 1;
-        width = "400px";
-        height = "300px";
-        z = 3;
       } else if (i === currentIndex - 1) {
-        // Card izquierda
-        x = -350;
-        scale = 0.85;
-        opacity = 0.7;
-        width = "310px";
-        height = "250px";
-        z = 2;
+        x = -350; scale = 0.85; opacity = 0.7; width = "310px"; height = "250px"; z = 2;
       } else if (i === currentIndex + 1) {
-        // Card derecha
-        x = 350;
-        scale = 0.85;
-        opacity = 0.7;
-        width = "310px";
-        height = "250px";
-        z = 2;
+        x = 350; scale = 0.85; opacity = 0.7; width = "310px"; height = "250px"; z = 2;
       }
-
-      gsap.to(card, {
-        x,
-        scale,
-        opacity,
-        width,
-        height,
-        zIndex: z,
-        duration: 0.8,
-        ease: "power2.out"
-      });
+      gsap.to(card, { x, scale, opacity, width, height, zIndex: z, duration: 0.8, ease: "power2.out" });
     });
   }
 }
