@@ -289,11 +289,10 @@ body {
 
 
 /* parte de vehiculos */
-
 /* 🔹 Cards de vehículos (imagen arriba, info abajo, ajustadas más arriba) */
 .card-vehiculo {
   position: absolute;
-  top: 45%; /* 🔹 Antes 50%, subidas un poco */
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -313,13 +312,13 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease;
   text-align: center;
-  overflow: hidden; /* 🔹 Evita desbordes */
+  overflow: hidden;
 }
 
 /* 🔹 Imagen más ajustada y controlada */
 .imagen-vehiculo img {
   width: 100%;
-  height: 160px; /* 🔹 un poco menos alta */
+  height: 160px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -327,9 +326,9 @@ body {
 /* 🔹 Contenedor de texto limitado */
 .info-vehiculo {
   flex: 1;
-  overflow-y: auto; /* 🔹 si el texto es largo, permite scroll interno */
+  overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0,162,255,0.6) transparent;
+  scrollbar-color: rgba(0, 162, 255, 0.6) transparent;
   margin-top: 10px;
   padding: 0 5px;
 }
@@ -349,36 +348,33 @@ body {
 
 /* 🔹 Ajuste visual cuando están más pequeñas */
 .card-vehiculo[style*="scale(0.85)"] {
-  top: 43%; /* 🔹 Subidas un poco más cuando son las laterales */
+  top: 43%;
   opacity: 0.8;
 }
 
-
-/* Botón seleccionar */
+/* ==== BOTÓN SELECCIONAR ==== */
 .btn-seleccionar {
   position: fixed;
   right: 40px;
   bottom: 40px;
-  background-color: #0d6efd;
-  color: white;
+  background-color: #E69A00;
+  color: #111111;
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 18px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 162, 255, 0.6);
+  box-shadow: 0 0 10px rgba(230, 166, 0, 0.6);
   transition: all 0.3s ease;
   z-index: 20;
 }
 
 .btn-seleccionar:hover {
-  background-color: white;
-  color: #0d6efd;
+  background-color: #fff;
+  color: #E69A00;
   transform: scale(1.1);
 }
 
-
-/* animasicones adicionales  */
 /* ==== BARRA SUPERIOR ==== */
 .barra-superior {
   position: absolute;
@@ -387,16 +383,17 @@ body {
   width: 100%;
   height: 60px;
   background: rgba(0, 0, 0, 0.7);
-  border-bottom: 2px solid #FFA500;
+  border-bottom: 2px solid #E69A00;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  color: #FFB845;
+  color: #E6A600;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
   z-index: 10;
 }
+
 .barra-opciones span {
   margin-left: 20px;
   cursor: pointer;
@@ -414,29 +411,32 @@ body {
   transform: translateX(-50%);
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
-  color: #FFB845;
-  text-shadow: 0 0 25px #FFA500;
+  color: #E6A600;
+  text-shadow: 0 0 25px #CC8400;
   z-index: 5;
 }
+
 .descripcion-juego {
   position: absolute;
   top: 150px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: #FFB845;
+  color: rgba(230, 166, 0, 0.85);
   font-family: 'Orbitron', sans-serif;
   max-width: 600px;
   z-index: 5;
 }
+
 .descripcion-juego h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #FFA500;
+  color: #E6A600;
 }
+
 .descripcion-juego p {
   font-size: 1rem;
-  color: rgba(255, 230, 180, 0.9);
+  color: rgba(230, 166, 0, 0.8);
 }
 
 /* ==== PERFIL DE USUARIO ==== */
@@ -448,19 +448,20 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 184, 69, 0.5);
   padding: 10px 20px;
-  border: 2px solid #FFA500;
+  border: 2px solid #E69A00;
   border-radius: 12px;
-  color: #FFF3C0;
+  color: #111111;
   font-family: 'Orbitron', sans-serif;
   z-index: 8;
 }
+
 .avatar-jugador {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  border: 2px solid #FFA500;
+  border: 2px solid #E69A00;
   object-fit: cover;
 }
 
@@ -469,22 +470,24 @@ body {
   position: absolute;
   top: 40%;
   width: 260px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #FFB845;
+  background: rgba(255, 184, 69, 0.2);
+  border: 2px solid #CC8400;
   border-radius: 12px;
   padding: 15px;
-  color: #FFF3C0;
+  color: #111111;
   font-family: monospace;
   z-index: 7;
 }
+
 .tabla-lateral.izq { left: 5%; }
 .tabla-lateral.der { right: 5%; }
+
 .tabla-lateral h3 {
-  color: #FFA500;
+  color: #CC8400;
   font-size: 1.3rem;
   margin-bottom: 12px;
   text-align: center;
-  text-shadow: 0 0 10px #FFB845;
+  text-shadow: 0 0 10px #E6A600;
 }
 
 /* ==== EVENTOS CON PROGRESO ==== */
@@ -492,22 +495,25 @@ body {
   margin-bottom: 14px;
   font-size: 0.95rem;
 }
+
 .progreso-barra {
   width: 100%;
   height: 8px;
-  background: #2a2a2a;
+  background: #333;
   border-radius: 4px;
   overflow: hidden;
   margin: 5px 0;
 }
+
 .progreso {
   height: 100%;
-  background: linear-gradient(90deg, #FFB845, #FFA500);
+  background: linear-gradient(90deg, #E6A600, #CC8400);
   transition: width 0.6s ease;
 }
+
 .progreso-texto {
   font-size: 0.8rem;
-  color: #FFDA7C;
+  color: #111111;
 }
 
 /* ==== BOTONES ==== */
@@ -517,15 +523,15 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: row; /* 🔹 cambia de column → row */
-  gap: 20px;           /* espacio entre botones */
+  flex-direction: row;
+  gap: 20px;
   z-index: 10;
 }
 
 .botones-menu button {
-  background: rgba(255, 184, 69, 0.2);
-  border: 2px solid #FFA500;
-  color: #FFF8E1;
+  background: rgba(230, 166, 0, 0.2);
+  border: 2px solid #CC8400;
+  color: #111111;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.5rem;
   padding: 12px 30px;
@@ -535,7 +541,7 @@ body {
 }
 
 .botones-menu button:hover {
-  background: #FFB845;
-  color: black;
-  box-shadow: 0 0 20px #FFB845;
+  background: #E6A600;
+  color: #000;
+  box-shadow: 0 0 20px #E6A600;
 }

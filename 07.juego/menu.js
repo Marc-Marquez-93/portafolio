@@ -58,6 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // =====================================================
   const titulo = document.createElement("h1");
   titulo.id = "tituloJuego";
+titulo.classList.add("tituloJuego")
   titulo.textContent = "WARZONE OPS";
   document.body.appendChild(titulo);
 
@@ -101,7 +102,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const perfil = document.createElement("div");
   perfil.classList.add("perfil-jugador");
   perfil.innerHTML = `
-    <img src="https://cdn4.vectorstock.com/i/1000x1000/77/23/soldier-avatar-icon-vector-32077723.jpg" alt="avatar" class="avatar-jugador" />
+    <img src="https://i.pinimg.com/736x/ee/9a/34/ee9a346df1608a443047762a724a5644.jpg" alt="avatar" class="avatar-jugador" />
     <div>
       <h3>Capitán Miguel</h3>
       <p>Rango: Élite</p>
@@ -191,7 +192,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const selectors = [
       ".barra-superior",
       ".descripcion-juego",
-      ".tabla-lateral",
       ".panel-lateral",
       ".decor",
       ".hud-overlay",
