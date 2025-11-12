@@ -411,8 +411,8 @@ body {
   transform: translateX(-50%);
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
-  color: #E6A600;
-  text-shadow: 0 0 25px #CC8400;
+  color: #00C8FF; /* 🔹 Azul neón visible sobre fondo amarillo */
+  text-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
   z-index: 5;
 }
 
@@ -422,7 +422,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: rgba(230, 166, 0, 0.85);
+  color: #E0E0E0; /* 🔹 Gris claro */
   font-family: 'Orbitron', sans-serif;
   max-width: 600px;
   z-index: 5;
@@ -431,12 +431,14 @@ body {
 .descripcion-juego h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #E6A600;
+  color: #00C8FF; /* 🔹 Igual al título principal */
+  text-shadow: 0 0 15px rgba(0, 200, 255, 0.7);
 }
 
 .descripcion-juego p {
   font-size: 1rem;
-  color: rgba(230, 166, 0, 0.8);
+  color: #E0E0E0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 /* ==== PERFIL DE USUARIO ==== */
