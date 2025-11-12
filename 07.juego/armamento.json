@@ -8,7 +8,7 @@
       "precision": "Alta",
       "alcance": "Media",
       "descripcion": "Rifle automático confiable, buen daño por tiro.",
-      "imagen": "https://media.istockphoto.com/photos/-picture-id182717773?k=6&m=182717773&s=612x612&w=0&h=OGQQahtCc08viVkK3mAIhbshqPo5LLm1DGCfQqtKdxo="
+      "imagen": "https://img.freepik.com/vector-premium/ak47-rifle-asalto-equipo-militar-ilustracion-vector-icono-plano-aislado_679085-438.jpg?w=360"
     },
     {
       "id": "arma-02",
@@ -18,7 +18,7 @@
       "precision": "Media",
       "alcance": "Media-Alta",
       "descripcion": "Rifle versátil, estable y con buena cadencia.",
-      "imagen": "https://www.armytimes.com/resizer/Rbej65-hPPf9Vmd6iP-jQG-czps=/1440x0/filters:format(jpg):quality(70)/arc-anglerfish-arc2-prod-mco.s3.amazonaws.com/public/GJMK4T6JXBADVOWMMEDOTQ2PQA.jpg"
+      "imagen": "https://cdn.dribbble.com/users/1787323/screenshots/4546109/media/273471e70661bdb3ecd8580e93fd584b.png?resize=400x300&vertical=center"
     },
     {
       "id": "arma-03",
@@ -28,7 +28,7 @@
       "precision": "Muy alta",
       "alcance": "Larga",
       "descripcion": "Francotirador potente de un solo disparo letal.",
-      "imagen": "https://th.bing.com/th/id/R.e0db2e6aa766fe4e84ca03d5a2a6735a?rik=sOW2P9sXvGWc2Q&pid=ImgRaw&r=0"
+      "imagen": "https://www.gamersdecide.com/sites/default/files/authors/u165012/csgo-asiimov.jpg"
     },
     {
       "id": "arma-04",
@@ -38,7 +38,7 @@
       "precision": "Baja-Media",
       "alcance": "Corta",
       "descripcion": "Subfusil compacto, excelente en combates cercanos.",
-      "imagen": "https://media.istockphoto.com/photos/submachine-gun-mp5-isolated-picture-id474761006?k=20&m=474761006&s=612x612&w=0&h=hUMXWkEQBWT47BZ6GWyqMa73HQEzipBsDWr3FNDUfaA="
+      "imagen": "https://img.freepik.com/vecteurs-premium/dessin-arme-feu-qui-dit-armes-feu_909058-20190.jpg"
     },
     {
       "id": "arma-05",
@@ -48,7 +48,7 @@
       "precision": "Media",
       "alcance": "Media",
       "descripcion": "Rifle moderno y equilibrado, buena estabilidad.",
-      "imagen": "https://tse4.mm.bing.net/th/id/OIP.WZ7kLLJi01mAuoWH_Fa_tgHaCa?rs=1&pid=ImgDetMain&o=7&rm=3"
+      "imagen": "https://www.thetruthaboutguns.com/wp-content/uploads/2021/08/scar-feat-2.jpg"
     }
   ],
   "bombas": [
@@ -59,7 +59,7 @@
       "daño": 200,
       "radio": "Alto",
       "descripcion": "Explosivo manual potente, requiere detonador.",
-      "imagen": "https://p.turbosquid.com/ts-thumb/bK/U33v0J/EjJRUJXq/bombc4_a10/jpg/1517630113/600x600/fit_q87/497648e71784ff83aa93f2b670d03f9602c3a66c/bombc4_a10.jpg"
+      "imagen": "https://img.freepik.com/vector-premium/icon-vector-dibujos-animados-flotantes-bombas-ilustracion-dibujo-bomba-que-tiene-bomba-el_480349-307.jpg"
     },
     {
       "id": "bomba-02",
@@ -68,7 +68,7 @@
       "daño": 120,
       "radio": "Medio",
       "descripcion": "Detona al acercarse un enemigo; útil para trampas.",
-      "imagen": "https://historiaybiografias.com/archivos_varios4/explosivos.jpg"
+      "imagen": "https://tse2.mm.bing.net/th/id/OIP.3lD4ve8OgOKMFiubL-XL4QHaHa?cb=ucfimgc2&w=626&h=626&rs=1&pid=ImgDetMain&o=7&rm=3"
     },
     {
       "id": "bomba-03",
@@ -77,7 +77,7 @@
       "daño": 160,
       "radio": "Medio-Alto",
       "descripcion": "Detonación retardada programable.",
-      "imagen": "https://tse2.mm.bing.net/th/id/OIP.o9GS0buXq_sWXsSGe7jOLQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+      "imagen": "https://img.freepik.com/premium-vector/nuclear-bomb-clipart-vector-art-illustration_761413-21927.jpg"
     }
   ],
   "granadas": [
@@ -88,7 +88,7 @@
       "daño": 100,
       "efecto": "Fragmentos",
       "descripcion": "Explosión letal en área, buena contra grupos.",
-      "imagen": "https://img.freepik.com/premium-photo/hand-grenade-isolated-white-background-explosive-weapon_495423-46265.jpg"
+      "imagen": "https://tse4.mm.bing.net/th/id/OIP.TUM-robLhOPk-8Ev0R1YDgHaHa?cb=ucfimgc2&w=490&h=490&rs=1&pid=ImgDetMain&o=7&rm=3"
     },
     {
       "id": "granada-02",
@@ -97,7 +97,7 @@
       "daño": 0,
       "efecto": "Ceguera/Aturde",
       "descripcion": "Ciega y desorienta temporalmente al enemigo.",
-      "imagen": "https://th.bing.com/th/id/R.d811b00bfd691211601af649ba045eb9?rik=0sGfXz3U0ybO8Q&riu=http%3a%2f%2fimg.redwolfairsoft.com%2fupload%2fproduct%2fimg%2fG-08-032-L.jpg&ehk=K3MJCNDnz8g%2fz6yHadAh7%2bYVoO7LAdy3HMd82R0xx%2bA%3d&risl=&pid=ImgRaw&r=0"
+      "imagen": "https://img.freepik.com/premium-vector/hand-grenade-icon-cartoon-illustration-hand-grenade-vector-icon-web_96318-25191.jpg?w=2000"
     },
     {
       "id": "granada-03",
@@ -106,7 +106,7 @@
       "daño": 0,
       "efecto": "Cobertura",
       "descripcion": "Genera una nube de humo para ocultar movimientos.",
-      "imagen": "https://img.freepik.com/fotos-premium/granada-humo-aislada-cubierta-visual-recipiente-cilindrico-oli-sobre-fondo-blanco-concepto-militar_655090-631830.jpg"
+      "imagen": "https://img.freepik.com/premium-vector/hand-draw-cartoon-grenade-illustration-art_1300464-3692.jpg?w=900"
     }
   ]
 }

@@ -5,21 +5,21 @@
       "nombre": "Titan X-90",
       "rol": "Tanque pesado",
       "descripcion": "Diseñado para el frente de batalla, el Titan X-90 cuenta con blindaje reforzado y un cañón de alta potencia capaz de destruir fortificaciones enemigas en segundos.",
-      "imagen": "https://img.freepik.com/fotos-premium/tanque-militar-sobre-fondo-blanco_505557-14007.jpg"
+      "imagen": "https://st5.depositphotos.com/77020666/67132/v/450/depositphotos_671321056-stock-illustration-illustration-of-cute-war-tank.jpg"
     },
     {
       "id": "tanque2",
       "nombre": "Cobra MK-II",
       "rol": "Tanque ligero",
       "descripcion": "Rápido y maniobrable, el Cobra MK-II es ideal para misiones de reconocimiento y ataques relámpago en terreno abierto.",
-      "imagen": "https://tse4.mm.bing.net/th/id/OIP.lVrniJI26l5d2eF9j0q1LQHaE7?w=2000&h=1333&rs=1&pid=ImgDetMain&o=7&rm=3"
+      "imagen": "https://tse4.mm.bing.net/th/id/OIP.-8pO5DOX51MBX6Z-haVaqAHaEy?cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3"
     },
     {
       "id": "tanque3",
       "nombre": "Juggernaut V8",
       "rol": "Tanque de asedio",
       "descripcion": "Especializado en combates urbanos, el Juggernaut V8 puede resistir explosiones masivas y ofrece fuego sostenido con su doble cañón automático.",
-      "imagen": "https://img.freepik.com/fotos-premium/tanque-juguete-jugueton-sobre-fondo-blanco-ia-generativa_318002-2025.jpg"
+      "imagen": "https://tse3.mm.bing.net/th/id/OIP.khr0rgMHZA8Q7AeO_8poLwAAAA?cb=ucfimgc2&w=360&h=360&rs=1&pid=ImgDetMain&o=7&rm=3"
     }
   ],
 
@@ -29,21 +29,21 @@
       "nombre": "Falcon Strike",
       "rol": "Ataque aéreo",
       "descripcion": "El Falcon Strike combina velocidad y precisión con misiles guiados de última generación para eliminar objetivos terrestres desde el aire.",
-      "imagen": "https://img.freepik.com/fotos-premium/foto-helicoptero-versatil-fondo-blanco_431161-29923.jpg"
+      "imagen": "https://img.freepik.com/fotos-premium/ilustracion-al-estilo-dibujos-animados-helicoptero-militar-helice-generativa-ai_925897-50341.jpg"
     },
     {
       "id": "helicoptero2",
       "nombre": "Black Widow",
       "rol": "Transporte táctico",
       "descripcion": "Capaz de transportar tropas y suministros rápidamente a zonas hostiles, con defensa antiaérea integrada para misiones de alto riesgo.",
-      "imagen": "https://st2.depositphotos.com/3746989/5570/i/950/depositphotos_55704663-stock-photo-red-helicopter-on-white-background.jpg"
+      "imagen": "https://img.freepik.com/premium-vector/green-yellow-helicopter-with-words-word-it_1230457-76390.jpg?w=826"
     },
     {
       "id": "helicoptero3",
       "nombre": "Hawk Eye",
       "rol": "Reconocimiento aéreo",
       "descripcion": "Equipado con sensores térmicos y cámaras de largo alcance, el Hawk Eye brinda información táctica en tiempo real al equipo de tierra.",
-      "imagen": "https://img.freepik.com/fotos-premium/vista-lateral-helicoptero-militar-aislado-sobre-fondo-blanco_97889-1601.jpg"
+      "imagen": "https://img.freepik.com/premium-vector/cartoon-green-helicopter-with-orange-stripes_1220328-6048.jpg"
     }
   ],
 
@@ -53,21 +53,21 @@
       "nombre": "Specter 4",
       "rol": "Espionaje",
       "descripcion": "Pequeño y silencioso, el Specter 4 puede infiltrarse en bases enemigas sin ser detectado, enviando imágenes y coordenadas precisas.",
-      "imagen": "https://img.freepik.com/fotos-premium/drone-combate-militar-uav-aislado-sobre-fondo-blanco-aviones-modernos-ejercito-futuro-drone-militar-reconocimiento-ilustracion-3d-render-3d_99433-9279.jpg?w=2000"
+      "imagen": "https://img.freepik.com/fotos-premium/ilustracion-dibujos-animados-dron-camara-parte-superior_881695-8695.jpg"
     },
     {
       "id": "drone2",
       "nombre": "Hornet X",
       "rol": "Ataque rápido",
       "descripcion": "Armado con micro-misiles, el Hornet X ofrece potencia de fuego inmediata y es ideal para eliminar objetivos ligeros o distraer al enemigo.",
-      "imagen": "https://tse1.mm.bing.net/th/id/OIP.FjPJpjapUaZnBB4_iW8PkgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+      "imagen": "https://img.freepik.com/vecteurs-premium/dessin-anime-drone-clipart-dessin-illustration_871209-12691.jpg"
     },
     {
       "id": "drone3",
       "nombre": "Guardian V2",
       "rol": "Soporte defensivo",
       "descripcion": "Provee escudos de energía temporales y asistencia táctica para proteger unidades terrestres en combate.",
-      "imagen": "https://p.turbosquid.com/ts-thumb/bx/XAaz7R/w9/01/jpg/1649272385/600x600/fit_q87/1d95955eb5e3fc7c1364882a78f1110c2295b212/01.jpg"
+      "imagen": "https://img.freepik.com/premium-vector/drone-cartoon-style-icon-vector-clipart-illustration_1188056-1492.jpg"
     }
   ]
 }
